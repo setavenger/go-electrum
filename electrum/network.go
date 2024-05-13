@@ -71,8 +71,8 @@ type Client struct {
 }
 
 // NewClientTCP initialize a new client for remote server and connects to the remote server using TCP
-func NewClientTCP(ctx context.Context, addr string) (*Client, error) {
-	transport, err := NewTCPTransport(ctx, addr)
+func NewClientTCP(ctx context.Context, addr string, torProxyHost string) (*Client, error) {
+	transport, err := NewTCPTransport(ctx, addr, torProxyHost)
 	if err != nil {
 		return nil, err
 	}

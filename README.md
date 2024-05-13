@@ -7,7 +7,7 @@ This makes it easy to write cryptocurrencies based services in a trustless fashi
 ## Usage
 See [example/](https://github.com/checksum0/go-electrum/tree/master/example) for more.
 
-### electrum [![GoDoc](https://godoc.org/github.com/checksum0/go-electrum/electrum?status.svg)](https://godoc.org/github.com/checksum0/go-electrum/electrum)
+### electrum [![GoDoc](https://godoc.org/github.com/setavenger/go-electrum/electrum?status.svg)](https://godoc.org/github.com/setavenger/go-electrum/electrum)
 ```bash
 $ go get github.com/checksum0/go-electrum
 ```
@@ -20,7 +20,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/checksum0/go-electrum/electrum"
+	"github.com/setavenger/go-electrum/electrum"
 )
 
 func main() {

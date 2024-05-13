@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"context"
 	"crypto/tls"
+	"golang.org/x/net/proxy"
 	"log"
 	"net"
 	"time"
@@ -17,10 +18,22 @@ type TCPTransport struct {
 }
 
 // NewTCPTransport opens a new TCP connection to the remote server.
-func NewTCPTransport(ctx context.Context, addr string) (*TCPTransport, error) {
-	var d net.Dialer
+func NewTCPTransport(ctx context.Context, addr string, torProxyHost string) (*TCPTransport, error) {
+	var d proxy.Dialer
+	var err error
 
-	conn, err := d.DialContext(ctx, "tcp", addr)
+	if torProxyHost != "" {
+		// Use a SOCKS5 proxy if tor is true
+		d, err = proxy.SOCKS5("tcp", torProxyHost, nil, proxy.Direct)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		// Use the default dialer if tor is false
+		d = &net.Dialer{}
+	}
+
+	conn, err := d.(proxy.ContextDialer).DialContext(ctx, "tcp", addr)
 	if err != nil {
 		return nil, err
 	}

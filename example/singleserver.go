@@ -5,11 +5,11 @@ import (
 	"log"
 	"time"
 
-	"github.com/checksum0/go-electrum/electrum"
+	"github.com/setavenger/go-electrum/electrum"
 )
 
 func main() {
-	client, err := electrum.NewClientTCP(context.Background(), "bch.imaginary.cash:50001")
+	client, err := electrum.NewClientTCP(context.Background(), "electrum.example.com:50001", "127.0.0.1:9050")
 
 	if err != nil {
 		log.Fatal(err)
